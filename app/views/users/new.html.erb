@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>新しいユーザーを作成</title>
+</head>
+<body>
+  <h1>新しいユーザーを作成</h1>
+
+  <%= form_for @user do |f| %>
+    <div>
+      <%= f.label :uid %>
+      <%= f.text_field :uid %>
+    </div>
+
+    <div>
+      <%= f.label :pass %>
+      <%= f.text_field :pass %>
+    </div>
+    
+    <div>
+      <%= f.label :age %>
+      <%= f.text_field :age %>
+    </div>
+
+    <div>
+      <%= f.submit '作成' %>
+    </div>
+  <% end %>
+
+  <%= link_to 'ユーザー一覧に戻る', users_path %>
+</body>
+</html>
