@@ -1,0 +1,14 @@
+<% @tweets.each do |e| %>
+<p>
+    <%= e.message%>
+    <%=link_to "削除", tweet_path(e),data: { "turbo-method": :delete } %>
+</p>
+
+<%end%>
+
+<hr>
+<%= form_for @tweet, url:{action: :create} do |f| %>
+    <%= f.label :message, 'message' %>
+    <%= f.text_field :message %>
+    <%= f.submit 'ツイート' %>
+<% end %>
