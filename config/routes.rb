@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'top/logout'
   resources :users
   resources :tweets
+  resources :likes, only: [:create,:destroy]
   root 'tweets#index'
 end
 
