@@ -18,19 +18,16 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
-
-  # ...
-
-  private
-
-  def user_params
-    params.require(:uid).permit(:uid, :pass, :age)
-  end
-
+  
   def destroy
     @user = User.find(params[:uid])
     @user.destroy
-
     redirect_to users_path, notice: 'ユーザーが削除されました'
+  end
+  
+  private
+
+  def user_params
+    params.require(:user).permit(:uid, :pass, :age)
   end
 end
