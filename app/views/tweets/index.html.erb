@@ -16,7 +16,10 @@
     <%= f.submit 'ツイート' %>
 <% end %>
 
-<ht>
-<p>
-    <%= link_to 'ログイン', top_main_path%></p>
+<hr>
+<% if current_user%>
+    <p><%= link_to 'ログアウト', top_logout_path%></p>
+<%else%>>
+    <p><%= link_to 'ログイン', top_main_path%></p>
+<% end %>
 <p><%= link_to 'ユーザ一覧', users_path%></p>
