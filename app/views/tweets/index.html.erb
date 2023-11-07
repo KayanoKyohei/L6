@@ -1,19 +1,24 @@
 <% @tweets.each do |e| %>
 <p>
     <%= e.message%>
-    <%=link_to "削除", tweet_path(e),data: { "turbo-method": :delete } %>
-    
-    <%= link_to 'いいね', likes_path(tweet_id: e.id), data: { "turbo-method": :post } %>
-    <%= link_to 'いいね削除', like_path(e), data: { "turbo-method": :delete } %>
+    <% if current_user %>
+        <%=link_to "削除", tweet_path(e),data: { "turbo-method": :delete } %>
+        <% if e.liked?(current_user) %>
+            <%= link_to 'いいね削除', like_path(e), data: { "turbo-method": :delete } %>
+        <% else %>
+            <%= link_to 'いいね', likes_path(tweet_id: e.id), data: { "turbo-method": :post } %>
+        <%end%>
+    <%end%>
 </p>
-
 <%end%>
 
 <hr>
-<%= form_for @tweet, url:{action: :create} do |f| %>
-    <%= f.label :message, 'message' %>
-    <%= f.text_field :message %>
-    <%= f.submit 'ツイート' %>
+<% if current_user %>
+    <%= form_for @tweet, url:{action: :create} do |f| %>
+        <%= f.label :message, 'message' %>
+        <%= f.text_field :message %>
+        <%= f.submit 'ツイート' %>
+    <% end %>
 <% end %>
 
 <hr>
